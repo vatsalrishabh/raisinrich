@@ -11,8 +11,8 @@ const Carousel = () => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 30000,
-    appenDots: (dots) => (
+    autoplaySpeed: 10000,
+    appendDots: (dots) => (
       <div>
         <ul>{dots}</ul>
       </div>
@@ -24,40 +24,52 @@ const Carousel = () => {
 
   return (
     <div className="h-screen w-full container mx-auto -mt-[88px]">
-      <div className="absolute top-0 left-0 w-full h-full">
+      {/* Background Image */}
+      <div className="absolute top-0 left-0 w-full h-full -z-10">
         <div className="relative h-full w-full">
           <Image
-            src="/images/hero-bg.jpg"
-            alt=""
+            src="/images/hero-bg.jpg" // You should replace this with a fitness/meal-related background image
+            alt="Hero Background"
             layout="fill"
             priority
             objectFit="cover"
           />
         </div>
       </div>
+
+      {/* Slider Content */}
       <Slider {...settings}>
         <div>
-          <div className="mt-48  text-white flex flex-col items-start gap-y-10">
-            <Title addClass="text-6xl">Fast Food Restaurant</Title>
+          <div className="mt-48 text-white flex flex-col items-start gap-y-10">
+            <Title addClass="text-6xl sm:text-7xl">Eat Clean. Get Lean.</Title>
             <p className="text-sm sm:w-2/5 w-full">
-              Doloremque, itaque aperiam facilis rerum, commodi, temporibus
-              sapiente ad mollitia laborum quam quisquam esse error unde.
-              Tempora ex doloremque, labore, sunt repellat dolore, iste magni
-              quos nihil ducimus libero ipsam.
+              Customized meal plans and calorie-tracked healthy meals delivered
+              to your doorstep. Build your body the sustainable way — without
+              giving up taste.
             </p>
-            <button className="btn-primary">Order Now</button>
+            <button className="btn-primary">Start Your Journey</button>
           </div>
         </div>
         <div>
-          <div className="relative text-white top-48 flex flex-col items-start gap-y-10">
-            <Title addClass="text-6xl">Fast Food Restaurant</Title>
+          <div className="mt-48 text-white flex flex-col items-start gap-y-10">
+            <Title addClass="text-6xl sm:text-7xl">Transform with Experts</Title>
             <p className="text-sm sm:w-2/5 w-full">
-              Doloremque, itaque aperiam facilis rerum, commodi, temporibus
-              sapiente ad mollitia laborum quam quisquam esse error unde.
-              Tempora ex doloremque, labore, sunt repellat dolore, iste magni
-              quos nihil ducimus libero ipsam.
+              Work with certified nutritionists and fitness coaches to transform
+              your body and lifestyle. Tailored fitness + diet programs for your
+              specific goals.
             </p>
-            <button className="btn-primary">Order Now</button>
+            <button className="btn-primary">Get Personalized Plan</button>
+          </div>
+        </div>
+        <div>
+          <div className="mt-48 text-white flex flex-col items-start gap-y-10">
+            <Title addClass="text-6xl sm:text-7xl">Real Food. Real Results.</Title>
+            <p className="text-sm sm:w-2/5 w-full">
+              No crash diets. No fads. Just real, balanced meals that support
+              fat loss, muscle gain, and long-term health. Trusted by thousands
+              across India.
+            </p>
+            <button className="btn-primary">Explore Our Meals</button>
           </div>
         </div>
       </Slider>

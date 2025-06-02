@@ -1,0 +1,46 @@
+name: 🚀 Deploy apusaloon to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Next.js app
+      run: npm run build
+
+    - name: Copy project to VPS
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_DEPLOY_KEY }}
+        source: "."
+        target: "/home/apusalon/public_html"
+
+    - name: Restart PM2 app
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_DEPLOY_KEY }}
+        script: |
+          cd /home/apusalon/public_html
+          npm install
+          npm run build
+          pm2 restart apusaloon || pm2 start npm --name "apusaloon" -- start

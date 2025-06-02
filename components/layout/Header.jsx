@@ -14,6 +14,20 @@ const Header = () => {
 
   const router = useRouter();
 
+  const navItems = [
+  // { name: "Home", path: "/" },
+  // { name: "Menu", path: "/menu" },
+  // { name: "About", path: "/about" },
+  // { name: "Book Table", path: "/reservation" },
+
+   { name: "Pricing", path: "/pricing" },
+  { name: "Food Subscription", path: "/subscription" },
+  { name: "Food Menu", path: "/food-menu" },
+  { name: "Personal Training", path: "/personal-training" },
+  { name: "Transformations", path: "/transformations" },
+  { name: "Partner With Us", path: "/partner" },
+];
+
   return (
     <div
       className={`h-[5.5rem] z-50 relative w-full ${
@@ -27,40 +41,19 @@ const Header = () => {
             isMenuModal === true && "!grid place-content-center"
           }`}
         >
-          <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
-            <li
-              className={`px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer ${
-                router.asPath === "/" && "text-primary"
-              }}`}
-              onClick={() => setIsMenuModal(false)}
-            >
-              <Link href="/">Home</Link>
-            </li>
-            <li
-              className={`px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer ${
-                router.asPath === "/menu" && "text-primary"
-              }`}
-              onClick={() => setIsMenuModal(false)}
-            >
-              <Link href="/menu">Menu</Link>
-            </li>
-            <li
-              className={`px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer ${
-                router.asPath === "/about" && "text-primary"
-              }`}
-              onClick={() => setIsMenuModal(false)}
-            >
-              <Link href="/about">About</Link>
-            </li>
-            <li
-              className={`px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer ${
-                router.asPath === "/reservation" && "text-primary"
-              }`}
-              onClick={() => setIsMenuModal(false)}
-            >
-              <Link href="/reservation">Book Table</Link>
-            </li>
-          </ul>
+        <ul className="flex gap-x-2 sm:flex-row flex-col items-center">
+      {navItems.map(({ name, path }) => (
+        <li
+          key={path}
+          className={`px-[5px] py-[10px] uppercase hover:text-primary cursor-pointer ${
+            router.asPath === path ? "text-primary" : ""
+          }`}
+          onClick={() => setIsMenuModal(false)}
+        >
+          <Link href={path}>{name}</Link>
+        </li>
+      ))}
+    </ul>
           {isMenuModal && (
             <button
               className="absolute  top-4 right-4 z-50"
