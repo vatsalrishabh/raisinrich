@@ -1,4 +1,4 @@
-name: 🚀 Deploy apusaloon to VPS
+name: 🚀 Deploy raisinrich to VPS
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_DEPLOY_KEY }}
         source: "."
-        target: "/home/apusalon/public_html"
+        target: "/home/raisinrich/public_html"
 
     - name: Restart PM2 app
       uses: appleboy/ssh-action@v1.0.3
@@ -40,7 +40,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_DEPLOY_KEY }}
         script: |
-          cd /home/apusalon/public_html
+          cd /home/raisinrich/public_html
           npm install
           npm run build
-          pm2 restart apusaloon || pm2 start npm --name "apusaloon" -- start
+          pm2 restart raisinrich || pm2 start npm --name "raisinrich" -- start
