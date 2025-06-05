@@ -28,7 +28,7 @@ const Carousel = () => {
       <div className="absolute top-0 left-0 w-full h-full -z-10">
         <div className="relative h-full w-full">
           <Image
-            src="/images/hero-bg.jpg" // You should replace this with a fitness/meal-related background image
+            src="/images/raisinrichhero.png" // You should replace this with a fitness/meal-related background image
             alt="Hero Background"
             layout="fill"
             priority

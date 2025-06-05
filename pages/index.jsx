@@ -9,7 +9,7 @@ export default function Index({ categoryList, productList }) {
   return (
     <div className="">
       <Head>
-        <title>Feane</title>
+        <title>Raisinrich</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -35,3 +35,14 @@ export const getServerSideProps = async () => {
     },
   };
 };
+
+export function ProductPage({ product }) {
+  return (
+    <>
+      <Head>
+        <title>{product.name} | Raisinrich</title>
+      </Head>
+      {/* ...rest of the page... */}
+    </>
+  );
+}
