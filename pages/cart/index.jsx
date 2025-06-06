@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Cart = ({ userList }) => {
   const { data: session } = useSession();
@@ -119,7 +120,9 @@ const Cart = ({ userList }) => {
                       </button>
                     </td>
                     <td className="py-2 px-2">
-                      <img
+                      <Image
+                        width={64} 
+                        height={64}
                         src={
                           product.image?.src ||
                           product.image ||

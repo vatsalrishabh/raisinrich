@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import { FaSun, FaCloud, FaCloudRain, FaRegCalendarAlt } from 'react-icons/fa';
 import { GiChickenOven, GiFishCooked, GiEggClutch, GiWrappedSweet } from 'react-icons/gi';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 // Icon map for days (customize as you like)
 const dayIcons = [
-  <FaSun className="text-yellow-400" />,      // Monday
-  <FaCloud className="text-blue-400" />,      // Tuesday
-  <FaCloudRain className="text-indigo-400" />,// Wednesday
-  <FaRegCalendarAlt className="text-green-400" />, // Thursday
-  <FaSun className="text-orange-400" />,      // Friday
-  <FaCloud className="text-pink-400" />,      // Saturday
-  <FaRegCalendarAlt className="text-purple-400" />, // Sunday
+  <FaSun key="sun1" className="text-yellow-400" />,
+  <FaCloud key="cloud1" className="text-blue-400" />,
+  <FaCloudRain key="rain" className="text-indigo-400" />,
+  <FaRegCalendarAlt key="cal1" className="text-green-400" />,
+  <FaSun key="sun2" className="text-orange-400" />,
+  <FaCloud key="cloud2" className="text-pink-400" />,
+  <FaRegCalendarAlt key="cal2" className="text-purple-400" />,
 ];
 
 // Icon map for meals
@@ -158,7 +159,9 @@ const NonVegSection = ({ heading, foodItems }) => {
                     {mealIcons[meal]}
                     <h3 className='text-2xl font-bold'>{currentDayFood[meal].name}</h3>
                   </div>
-                  <img
+                  <Image
+                    width={400}
+                    height={300}
                     src={currentDayFood[meal].image}
                     alt={currentDayFood[meal].name}
                     className='w-full h-44 object-cover rounded-xl mb-4 border'

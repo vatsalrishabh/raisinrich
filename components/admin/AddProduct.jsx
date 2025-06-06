@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import { productSchema } from "../../schema/product";
 import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
+import Image from "next/image";
 
 const AddProduct = ({ setIsProductModal }) => {
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -158,7 +159,7 @@ const AddProduct = ({ setIsProductModal }) => {
                 {imageSrc && (
                   <div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       className="rounded-full border-2 border-primary"
                       src={imageSrc}
                       alt=""
