@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Title from "./ui/Title";
 import Slider from "react-slick";
+import { useRouter } from "next/router";
+import StartFoodSubscription from "./ui/StartFoodSubscription";
 
 const Carousel = () => {
+  const router = useRouter();
   const settings = {
     dots: true,
     infinite: true,
@@ -47,7 +50,7 @@ const Carousel = () => {
               to your doorstep. Build your body the sustainable way — without
               giving up taste.
             </p>
-            <button className="btn-primary">Start Your Journey</button>
+           <StartFoodSubscription/>
           </div>
         </div>
         <div>
@@ -58,7 +61,12 @@ const Carousel = () => {
               your body and lifestyle. Tailored fitness + diet programs for your
               specific goals.
             </p>
-            <button className="btn-primary">Get Personalized Plan</button>
+            <button
+              className="px-8 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 shadow-lg transition-all duration-200 hover:scale-105"
+              onClick={() => router.push("/subscription")}
+            >
+              Start Food Subscription
+            </button>
           </div>
         </div>
         <div>
@@ -69,7 +77,12 @@ const Carousel = () => {
               fat loss, muscle gain, and long-term health. Trusted by thousands
               across India.
             </p>
-            <button className="btn-primary">Explore Our Meals</button>
+            <button
+              className="px-8 py-3 rounded-lg font-bold text-white bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 shadow-lg transition-all duration-200 hover:scale-105"
+              onClick={() => router.push("/subscription")}
+            >
+              Start Food Subscription
+            </button>
           </div>
         </div>
       </Slider>

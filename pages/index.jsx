@@ -5,6 +5,7 @@ import Header from "../components/layout/Header";
 import Home from "./home";
 import axios from "axios";
 
+
 export default function Index({ categoryList, productList }) {
   return (
     <div className="">
@@ -35,14 +36,3 @@ export const getServerSideProps = async () => {
     },
   };
 };
-
-export function ProductPage({ product }) {
-  return (
-    <>
-      <Head>
-        <title>{product.name} | Raisinrich</title>
-      </Head>
-      {/* ...rest of the page... */}
-    </>
-  );
-}

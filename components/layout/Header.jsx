@@ -25,7 +25,7 @@ const Header = () => {
   { name: "Food Menu", path: "/food-menu" },
   { name: "Personal Training", path: "/personal-training" },
   { name: "Transformations", path: "/transformations" },
-  { name: "Partner With Us", path: "/partner" },
+
 ];
 
   return (

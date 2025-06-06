@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-center mt-10">
-          © 2022 All Rights Reserved By Free Html Templates
+          &copy; {new Date().getFullYear()} Raisinrich. All rights reserved.
         </p>
       </div>
     </div>

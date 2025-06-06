@@ -2,8 +2,16 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="en" className="scroll-smooth">
       <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="Raisinrich is a platform that offers a wide range of products and services to enhance your lifestyle. From health and wellness to fashion and technology, we have something for everyone."
+        />
+        <meta name="keywords" content="Raisinrich, lifestyle, products, services" />
+        <meta name="author" content="Raisinrich Team" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -20,7 +28,7 @@ export default function Document() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossOrigin="anonymous"
-          referrerpolicy="no-referrer"
+          referrerPolicy="no-referrer"
         />
         <link
           rel="stylesheet"
