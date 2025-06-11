@@ -9,7 +9,9 @@
 /coverage
 
 .gitignore
+# why still .env is being tracked?
 .env
+.env.production
 # next.js
 /.next/
 /out/

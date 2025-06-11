@@ -20,7 +20,7 @@ const Header = () => {
   // { name: "About", path: "/about" },
   // { name: "Book Table", path: "/reservation" },
 
-   { name: "Pricing", path: "/pricing" },
+  //  { name: "Pricing", path: "/pricing" },
   { name: "Food Subscription", path: "/subscription" },
   { name: "Food Menu", path: "/food-menu" },
   { name: "Personal Training", path: "/personal-training" },

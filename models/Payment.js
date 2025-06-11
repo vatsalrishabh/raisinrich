@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 const paymentSchema = new mongoose.Schema({
   userId: {
     type: String,
-    required: true,
     ref: 'User'
+    // not required
   },
   razorpayPaymentId: {
     type: String,
@@ -12,10 +12,6 @@ const paymentSchema = new mongoose.Schema({
     unique: true
   },
   razorpayOrderId: {
-    type: String,
-    required: true
-  },
-  razorpaySignature: {
     type: String,
     required: true
   },
@@ -29,30 +25,41 @@ const paymentSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['created', 'paid', 'failed'],
-    default: 'created'
+    enum: ['pending', 'paid', 'failed'],
+    default: 'pending'
   },
   planDetails: {
     goal: {
       type: String,
       enum: ['Weight Loss', 'Weight Maintenance', 'Gain Muscle', 'Detox Cut Diet']
     },
-    subscriptionDuration: {
+    dietTechnique: {
       type: String,
-      enum: ['3 Days Trial', '2 Weeks', '4 Weeks']
     },
-    mealsPerDay: [String], // ["Breakfast", "Lunch", "Dinner"]
-    preference: {
-      type: String,
-      enum: ['Veg', 'Non-Veg', 'Eggetarian']
-    }
+    dietType:String, // e.g., "Balanced", "Keto", "Detox"
+    heightFeet: String, // in feet
+    heightInches: String, // in inches
+    weight: String, // in kg
+    age: String, // in years
+    gender:String,
+    mealTimes: [String], // e.g., ["Breakfast", "Lunch", "Evening-Snack", "Dinner"]
+    days:String, // e.g., "3 Days", "5 Days", "7 Days"
+    fullName: String,
+    email: String,
+    phone: String,
+    address:String,
+    city:String,
+    state:String,
+    country:String,
+    zipCode:String,
   },
-  paymentDate: {
-    type: Date,
-    default: Date.now
-  }
-}, {
-  timestamps: true
+  total: {
+    type: String,
+    required: true
+  },
+
+  
+   
 });
 
 export default mongoose.models.Payment || mongoose.model("Payment", paymentSchema);

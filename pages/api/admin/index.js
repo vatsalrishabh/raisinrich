@@ -9,16 +9,17 @@ import bcrypt from "bcryptjs"; // <-- Use bcryptjs for password comparison
 //api - /admin
 const handler = async (req, res) => {
   const { method } = req;
+  console.log("Admin API called", req.body);
 
   if (method === "POST") {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     await dbConnect();
 
     // Find the user by email and role
     const user = await User.findOne({
-      email,
+      email:username,
       role: "admin",
-    });
+    }).select("+password");
 
     // Check if user exists
     if (!user) {
@@ -35,7 +36,7 @@ const handler = async (req, res) => {
     // Create JWT token
     const token = jsonwebtoken.sign(
       {
-        userId: user._id,
+        userId: user.userId,
         role: user.role,
         isLoggedIn: true,
         email: user.email,

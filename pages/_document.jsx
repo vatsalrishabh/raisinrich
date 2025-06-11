@@ -1,11 +1,13 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
     <Html lang="en" className="scroll-smooth">
       <Head>
+        <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="beforeInteractive" />
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
         <meta
           name="description"
           content="Raisinrich is a platform that offers a wide range of products and services to enhance your lifestyle. From health and wellness to fashion and technology, we have something for everyone."

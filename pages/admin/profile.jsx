@@ -1,8 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Category from "../../components/admin/Category";
 import Footer from "../../components/admin/Footer";
 import Order from "../../components/admin/Order";
@@ -11,8 +10,17 @@ import { toast } from "react-toastify";
 
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
-
   const { push } = useRouter();
+
+  // Client-side auth check
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("admin_token");
+      if (!token) {
+        push("/admin");
+      }
+    }
+  }, [push]);
 
   const closeAdminAccount = async () => {
     try {
@@ -29,7 +37,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col lg:mb-0 mb-10">
+    <div className="flex px-10 lg:flex-row flex-col lg:mb-0 mb-10">
       <div className="lg:w-80 w-100 flex-shrink-0 lg:h-[100vh]   justify-center flex flex-col border-l-2 border-r-4 shadow-2xl">
         <div className="relative flex flex-col items-center px-10 py-5  border-b-0">
           <Image
@@ -113,22 +121,6 @@ const Profile = () => {
       {tabs === 3 && <Footer />}
     </div>
   );
-};
-
-export const getServerSideProps = (ctx) => {
-  const myCookie = ctx.req?.cookies || "";
-  if (myCookie.token !== process.env.ADMIN_TOKEN) {
-    return {
-      redirect: {
-        destination: "/admin",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 };
 
 export default Profile;
