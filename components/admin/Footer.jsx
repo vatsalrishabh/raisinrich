@@ -1,193 +1,48 @@
-import React, { useEffect, useState } from "react";
-import Input from "../../components/form/Input";
+import React from "react";
 import Title from "../../components/ui/Title";
-import { useFormik } from "formik";
-import { footerSchema } from "../../schema/footer";
-import axios from "axios";
-import { toast } from "react-toastify";
 
 const Footer = () => {
-  const [iconName, setIconName] = useState("fa fa-");
-  const [linkAddress, setLinkAddress] = useState("https://");
-  const [socialMediaLinks, setSocialMediaLinks] = useState([]);
-  const [footerData, setFooterData] = useState([]);
-
-  const onSubmit = async (values, actions) => {
-    try {
-      const res = await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/footer/${footerData._id}`,
-        {
-          location: values.location,
-          email: values.email,
-          phoneNumber: values.phoneNumber,
-          desc: values.desc,
-          openingHours: {
-            day: values.day,
-            hour: values.time,
-          },
-          socialMedia: socialMediaLinks,
-        }
-      );
-      if (res.status === 200) {
-        getFooterData();
-        toast.success("Footer Updated Successfully");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
-    useFormik({
-      enableReinitialize: true,
-      initialValues: {
-        location: footerData?.location,
-        email: footerData?.email,
-        phoneNumber: footerData?.phoneNumber,
-        desc: footerData?.desc,
-        day: footerData?.openingHours?.day,
-        time: footerData?.openingHours?.hour,
-      },
-      onSubmit,
-      validationSchema: footerSchema,
-    });
-  const inputs = [
-    {
-      id: 1,
-      name: "location",
-      type: "text",
-      placeholder: "Your Location",
-      value: values.location,
-      errorMessage: errors.location,
-      touched: touched.location,
+  const footerData = {
+    location: "123, MG Road, Bengaluru",
+    email: "info@example.com",
+    phoneNumber: "+91 9876543210",
+    desc: "We provide quality services with 24/7 support.",
+    openingHours: {
+      day: "Mon - Fri",
+      hour: "9:00 AM - 6:00 PM",
     },
-    {
-      id: 2,
-      name: "email",
-      type: "text",
-      placeholder: "Your Email",
-      value: values.email,
-      errorMessage: errors.email,
-      touched: touched.email,
-    },
-    {
-      id: 3,
-      name: "phoneNumber",
-      type: "number",
-      placeholder: "Your Phone Number",
-      value: values.phoneNumber,
-      errorMessage: errors.phoneNumber,
-      touched: touched.phoneNumber,
-    },
-    {
-      id: 4,
-      name: "desc",
-      type: "text",
-      placeholder: "Your Description",
-      value: values.desc,
-      errorMessage: errors.desc,
-      touched: touched.desc,
-    },
-    {
-      id: 5,
-      name: "day",
-      type: "text",
-      placeholder: "Update Day",
-      value: values.day,
-      errorMessage: errors.day,
-      touched: touched.day,
-    },
-    {
-      id: 6,
-      name: "time",
-      type: "text",
-      placeholder: "Update Time",
-      value: values.time,
-      errorMessage: errors.time,
-      touched: touched.time,
-    },
-  ];
-
-  const getFooterData = async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/footer`);
-      setFooterData(res.data[0]);
-      setSocialMediaLinks(res.data[0].socialMedia);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getFooterData();
-  }, []);
-
-  const handleCreate = () => {
-    setSocialMediaLinks([
-      ...footerData?.socialMedia,
-      {
-        icon: iconName,
-        link: linkAddress,
-      },
-    ]);
-
-    setIconName("fa fa-");
-    setLinkAddress("https://");
+    socialMedia: [
+      { icon: "fa fa-facebook", link: "https://facebook.com" },
+      { icon: "fa fa-twitter", link: "https://twitter.com" },
+      { icon: "fa fa-instagram", link: "https://instagram.com" },
+    ],
   };
 
   return (
-    <form
-      className="lg:p-8 flex-1 lg:mt-0 mt-5 flex flex-col justify-center"
-      onSubmit={handleSubmit}
-    >
-      <Title addClass="text-[40px]">Footer Settings</Title>
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mt-4">
-        {inputs.map((input) => (
-          <Input
-            key={input.id}
-            {...input}
-            onBlur={handleBlur}
-            onChange={handleChange}
-          />
-        ))}
+    <div className="lg:p-8 flex-1 lg:mt-0 mt-5 flex flex-col justify-center">
+      <Title addClass="text-[40px]">Footer Information</Title>
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 mt-4 text-lg">
+        <p><strong>Location:</strong> {footerData.location}</p>
+        <p><strong>Email:</strong> {footerData.email}</p>
+        <p><strong>Phone Number:</strong> {footerData.phoneNumber}</p>
+        <p><strong>Description:</strong> {footerData.desc}</p>
+        <p><strong>Opening Days:</strong> {footerData.openingHours.day}</p>
+        <p><strong>Opening Hours:</strong> {footerData.openingHours.hour}</p>
       </div>
-      <div className="mt-4 flex justify-between md:items-center md:flex-row flex-col gap-4">
-        <div className="flex items-center gap-4">
-          <Input
-            placeholder="Link Address"
-            onChange={(e) => setLinkAddress(e.target.value)}
-            value={linkAddress}
-          />
-          <Input
-            placeholder="Icon Name"
-            onChange={(e) => setIconName(e.target.value)}
-            value={iconName}
-          />
-          <button className="btn-primary" type="button" onClick={handleCreate}>
-            Add
-          </button>
-        </div>
+
+      <div className="mt-6">
+        <h3 className="text-2xl font-semibold mb-4">Follow Us</h3>
         <ul className="flex items-center gap-6">
-          {socialMediaLinks &&
-            socialMediaLinks.map((item, index) => (
-              <li key={index} className="flex items-center">
+          {footerData.socialMedia.map((item, index) => (
+            <li key={index}>
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
                 <i className={`${item.icon} text-2xl`}></i>
-                <button
-                  className="text-danger"
-                  onClick={() => {
-                    setIcons((prev) => prev.filter((item, i) => i !== index));
-                  }}
-                  type="button"
-                >
-                  <i className="fa fa-trash text-xl ml-2"></i>
-                </button>
-              </li>
-            ))}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
-      <button className="btn-primary mt-4" type="submit">
-        Update
-      </button>
-    </form>
+    </div>
   );
 };
 
