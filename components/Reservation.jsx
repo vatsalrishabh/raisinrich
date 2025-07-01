@@ -5,11 +5,27 @@ import { useFormik } from "formik";
 import { reservationSchema } from "../schema/reservation";
 
 const Reservation = () => {
-  const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    actions.resetForm();
-    alert("Your appointment has been booked successfully!");
-  };
+const onSubmit = async (values, actions) => {
+  const message = `
+📅 *New Diet & Fitness Consultation Booking!*
+👤 *Name:* ${values.fullName}
+📞 *Phone:* ${values.phoneNumber}
+📧 *Email:* ${values.email}
+👥 *Participants:* ${values.persons}
+🗓️ *Date & Time:* ${new Date(values.date).toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+  })}
+  `;
+
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/919035188516?text=${encodedMessage}`;
+
+  actions.resetForm();
+
+  // Open WhatsApp chat with pre-filled message
+  window.open(whatsappUrl, "_blank");
+};
+
 
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
@@ -71,6 +87,8 @@ const Reservation = () => {
     },
   ];
 
+  
+
   return (
     <div className="container mx-auto py-12">
       <Title addClass="text-[40px] mb-10">Book a Diet & Fitness Consultation</Title>
@@ -92,12 +110,13 @@ const Reservation = () => {
         </form>
         <div className="lg:flex-1 w-full">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2184964237983!2d77.49494931482118!3d13.052608390800766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae23040705c4a3%3A0xd9c6e80751a7d184!2sRaisinrich%20Fitness%20Center!5e0!3m2!1sen!2sin!4v1713456789012!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3887.5004214816254!2d77.53132947507703!3d13.00377318731445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDAwJzEzLjYiTiA3N8KwMzInMDIuMSJF!5e0!3m2!1sen!2sin!4v1749711707278!5m2!1sen!2sin"
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             className="h-full w-full rounded-lg"
           ></iframe>
+         
         </div>
       </div>
     </div>

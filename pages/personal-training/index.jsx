@@ -11,6 +11,20 @@ const plans = [
     features: ["No commitment", "Meet your trainer", "Fitness assessment"],
   },
   {
+    title: "Onine Training",
+    price: "₹5,000 / month",
+    icon: <FaUserMd className="text-blue-500 text-3xl" />,
+    desc: "Personalized online training with weekly check-ins.",
+    features: [
+      "Weekly video calls",
+      "Custom workout plan",
+      "Progress tracking",
+      "Access to online resources",
+    
+    ],
+
+  },
+  {
     title: "Personal Training",
     price: "₹12,000 / month",
     icon: <FaDumbbell className="text-yellow-400 text-3xl" />,
@@ -85,7 +99,7 @@ const index = () => {
           <button
   onClick={() => {
     const message = `*Booking Request*%0A%0A*Plan:* ${plan.title}%0A*Price:* ${plan.price}%0A*Details:* ${plan.desc}%0A*Features:* ${plan.features.map(f => `\n- ${f}`).join("")}%0A%0APlease get in touch with me for further steps.`;
-    const phoneNumber = "919999999999"; // Change this to your number with country code
+    const phoneNumber = "919035188516"; // Change this to your number with country code
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, "_blank");
   }}

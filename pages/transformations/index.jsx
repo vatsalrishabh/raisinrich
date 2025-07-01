@@ -45,8 +45,9 @@ const Transformations = () => {
                 <Image
                   src={t.before}
                   alt={`${t.name} Before`}
-                  fill
-                  className="object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-300"
+                  width={160}
+                  height={208}
+                  className="object-cover opacity-80 grayscale group-hover:grayscale-0 transition-all duration-300 rounded-xl"
                 />
                 <span className="absolute bottom-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded shadow">
                   Before
@@ -58,8 +59,9 @@ const Transformations = () => {
                 <Image
                   src={t.after}
                   alt={`${t.name} After`}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  width={160}
+                  height={208}
+                  className="object-cover transition-transform duration-300 group-hover:scale-105 rounded-xl"
                 />
                 <span className="absolute bottom-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded shadow">
                   After

@@ -64,7 +64,7 @@ const Header = () => {
           )}
         </nav>
         <div className="flex gap-x-3 md:gap-x-4 items-center"> {/* Reduced gap */}
-          <Link href="/auth/login">
+          {/* <Link href="/auth/login">
             <span>
               {router.asPath.includes("auth") ? (
                 <i
@@ -82,8 +82,8 @@ const Header = () => {
                 />
               )}
             </span>
-          </Link>
-          <Link href="/cart">
+          </Link> */}
+          {/* <Link href="/cart">
             <span className="relative">
               <FaShoppingCart
                 className={`hover:text-primary transition-all cursor-pointer`}
@@ -92,10 +92,10 @@ const Header = () => {
                 {cart.products.length === 0 ? "0" : cart.products.length}
               </span>
             </span>
-          </Link>
-          <button onClick={() => setIsSearchModal(true)}>
+          </Link> */}
+          {/* <button onClick={() => setIsSearchModal(true)}>
             <FaSearch className="hover:text-primary transition-all cursor-pointer" />
-          </button>
+          </button> */}
           {/* <a href="#" className="md:inline-block hidden sm">
             <button className="btn-primary">Order Online</button>
           </a> */}

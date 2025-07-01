@@ -3,7 +3,7 @@ import Title from "../../components/ui/Title";
 
 const Footer = () => {
   const footerData = {
-    location: "123, MG Road, Bengaluru",
+    location: "#31 4th floor 12th main road near deep agarbatti Kurubarahalli bangalore 560086",
     email: "info@example.com",
     phoneNumber: "+91 9876543210",
     desc: "We provide quality services with 24/7 support.",
