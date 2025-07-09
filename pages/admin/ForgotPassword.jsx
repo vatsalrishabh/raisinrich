@@ -23,7 +23,7 @@ const ForgotPassword = ({ setShowForgot }) => {
     onSubmit: async (values) => {
       try {
         const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/forgot-password`,
+          `/api/admin/forgot-password`,
           { email: values.email }
         );
         if (
@@ -62,7 +62,7 @@ const ForgotPassword = ({ setShowForgot }) => {
     onSubmit: async (values, actions) => {
       try {
         const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/forgot-password/reset`,
+          `/api/admin/forgot-password/reset`,
           {
             email,
             otp: values.otp,

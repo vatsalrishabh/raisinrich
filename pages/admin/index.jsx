@@ -16,7 +16,7 @@ const Login = () => {
   const onSubmit = async (values, actions) => {
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/admin`,
+        `/api/admin`,
         values
       );
       if (res.data.message === "This email is not registered as Admin.") {

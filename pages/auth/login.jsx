@@ -32,7 +32,7 @@ const Login = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+        const res = await axios.get(`/api/users`);
         setCurrentUser(
           res.data?.find((user) => user.email === session?.user?.email)
         );
@@ -118,7 +118,7 @@ const Login = () => {
 export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
 
-  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+  const res = await axios.get(`/api/users`);
   const user = res.data?.find((user) => user.email === session?.user.email);
   if (session && user) {
     return {
