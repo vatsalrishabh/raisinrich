@@ -5,12 +5,12 @@ import { useFormik } from "formik";
 import { registerSchema } from "../../schema/register";
 import { newPasswordSchema } from "../../schema/newPassword";
 import axios from "axios";
-
+//
 const Password = ({ user }) => {
   const onSubmit = async (values, actions) => {
     try {
       const res = await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
+        `/api/users/${user._id}`,
         values
       );
       actions.resetForm();
