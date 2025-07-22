@@ -16,6 +16,15 @@ const handler = async (req, res) => {
     await dbConnect();
 
     // Find the user by email and role
+   const test = User.findOne({
+  email: username,
+  role: "admin"
+});
+    console.log("Test User 1:", test);
+ const test2 = User.find();
+ console.log("Test User 2:", test2);
+
+console.log("Test User:", test);
     const user = await User.findOne({
       email:username,
       role: "admin",
