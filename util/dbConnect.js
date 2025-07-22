@@ -31,6 +31,7 @@ async function dbConnect() {
         useUnifiedTopology: true,
       })
       .then((mongoose) => {
+         console.log("✅ Connected to MongoDB database:", mongoose.connection.name);
         return mongoose;
       });
   }
