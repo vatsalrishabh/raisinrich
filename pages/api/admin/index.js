@@ -27,7 +27,7 @@ const handler = async (req, res) => {
 console.log("Test User:", test);
     const user = await User.findOne({
       email:username,
-      role: "admin",
+      typeOfUser: "admin",
     }).select("+password");
 
     // Check if user exists
