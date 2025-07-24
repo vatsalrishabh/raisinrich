@@ -137,7 +137,7 @@ const Cart = ({ userList }) => {
         toast.success("Payment successful! Order placed.");
         dispatch(reset());
         dispatch(resetForm());
-        // router.push("/orders");
+        router.push("/");
       },
       prefill: {
         name: orderData.address.name,
