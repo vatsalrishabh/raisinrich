@@ -448,13 +448,13 @@ const Cart = ({ userList }) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  const res = await axios.get(`/api/users`);
-  return {
-    props: {
-      userList: res.data ? res.data : [],
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   const res = await axios.get(`/api/users`);
+//   return {
+//     props: {
+//       userList: res.data ? res.data : [],
+//     },
+//   };
+// };
 
 export default Cart;

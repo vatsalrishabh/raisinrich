@@ -40,7 +40,7 @@ const Login = () => {
         push("/admin/profile");
       }
     } catch (err) {
-      toast.error("Login failed. Please try again.");
+      toast.error(`error: ${err.response.data.message}`);
     }
   };
 
