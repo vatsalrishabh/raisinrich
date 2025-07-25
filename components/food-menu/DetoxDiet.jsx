@@ -4,6 +4,7 @@ import VegSection from './VegSection';
 import Title from '../ui/Title';
 
 const DetoxDiet = ({ plans }) => {
+   console.log(plans);
   // Filter detox diet plans only
   const detoxPlans = plans.filter(plan => plan.type.toLowerCase() === 'detox');
 
