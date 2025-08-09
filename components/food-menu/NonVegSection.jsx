@@ -32,7 +32,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       type:"balanced",
       breakfast: {
         name: "Chicken Omelette",
-        image: "https://example.com/chicken-omelette.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "A delicious omelette made with eggs and chicken, served with a side of toast.",
         protein: 25,
         carbs: 10,
@@ -41,7 +41,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       lunch: {
         name: "Grilled Chicken Salad",
-        image: "https://example.com/grilled-chicken-salad.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "A fresh salad topped with grilled chicken, mixed greens, and a light vinaigrette.",
         protein: 40,
         carbs: 15,
@@ -50,7 +50,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       eveningSnack: {
         name: "Chicken Wrap",
-        image: "https://example.com/chicken-wrap.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "A wrap filled with grilled chicken, lettuce, and a tangy sauce.",
         protein: 30,
         carbs: 20,
@@ -59,7 +59,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       dinner: {
         name: "Spicy Chicken Stir-Fry",
-        image: "https://example.com/spicy-chicken-stir-fry.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "A spicy stir-fry made with chicken, vegetables, and a savory sauce.",
         protein: 35,
         carbs: 25,
@@ -73,7 +73,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       category: "Non-Veg",
       breakfast: {
         name: "Egg Bhurji",
-        image: "https://example.com/egg-bhurji.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "Spiced scrambled eggs with onions and tomatoes.",
         protein: 20,
         carbs: 8,
@@ -82,7 +82,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       lunch: {
         name: "Chicken Biryani",
-        image: "https://example.com/chicken-biryani.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "Aromatic rice with tender chicken pieces and spices.",
         protein: 35,
         carbs: 60,
@@ -91,7 +91,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       eveningSnack: {
         name: "Chicken Soup",
-        image: "https://example.com/chicken-soup.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "Warm chicken soup with veggies.",
         protein: 18,
         carbs: 10,
@@ -100,7 +100,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       dinner: {
         name: "Fish Curry",
-        image: "https://example.com/fish-curry.jpg",
+        image: "/images/balanced-diet.jpg",
         description: "Spicy fish curry served with steamed rice.",
         protein: 28,
         carbs: 30,
@@ -162,8 +162,8 @@ const NonVegSection = ({ heading, foodItems }) => {
                   <Image
                     width={400}
                     height={300}
-                    src={currentDayFood[meal].image}
-                    alt={currentDayFood[meal].name}
+                    src={currentDayFood[meal].image || "/images/balanced-diet.jpg"}
+                    alt={currentDayFood[meal].name || "Meal image"}
                     className='w-full h-44 object-cover rounded-xl mb-4 border'
                   />
                   <p className='text-gray-700 mb-3'>{currentDayFood[meal].description}</p>

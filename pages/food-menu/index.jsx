@@ -31,10 +31,11 @@ const Index = () => {
     getDietPlans();
   }, []);
 
-  // 🔍 Filter by type
-  const balancedPlans = dietPlans.filter(plan => plan.type === "balanced");
-  const ketoPlans = dietPlans.filter(plan => plan.type === "keto");
-  const detoxPlans = dietPlans.filter(plan => plan.type === "detox");
+  // 🔍 Filter by type (case-insensitive)
+  const normalize = (v) => (v || "").toString().trim().toLowerCase();
+  const balancedPlans = dietPlans.filter(plan => normalize(plan.type) === "balanced");
+  const ketoPlans = dietPlans.filter(plan => normalize(plan.type) === "keto");
+  const detoxPlans = dietPlans.filter(plan => normalize(plan.type) === "detox");
 
   return (
     <div>

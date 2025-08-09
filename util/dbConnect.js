@@ -2,10 +2,9 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+// For development, if MongoDB is not available, we'll use a mock connection
 if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
-  );
+  console.warn("⚠️  MONGODB_URI not found. Using mock database for development.");
 }
 
 /**
@@ -20,6 +19,12 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  // If no MongoDB URI is provided, return a mock connection
+  if (!MONGODB_URI) {
+    console.log("🔧 Using mock database connection for development");
+    return { connection: { name: "mock-database" } };
+  }
+
   if (cached.conn) {
     return cached.conn;
   }
@@ -33,6 +38,11 @@ async function dbConnect() {
       .then((mongoose) => {
          console.log("✅ Connected to MongoDB database:", mongoose.connection.name);
         return mongoose;
+      })
+      .catch((error) => {
+        console.error("❌ Failed to connect to MongoDB:", error.message);
+        console.log("🔧 Using mock database connection for development");
+        return { connection: { name: "mock-database" } };
       });
   }
   cached.conn = await cached.promise;
