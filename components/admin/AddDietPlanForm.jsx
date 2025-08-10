@@ -78,7 +78,7 @@ const AddDietPlanForm = ({ onSuccess, setShowAddModal }) => {
         }
 
         await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/dietplans/uploadNew`,
+          `/api/admin/dietplans/uploadNew`,
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

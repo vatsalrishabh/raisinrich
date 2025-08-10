@@ -16,7 +16,7 @@ const Order = () => {
     const getOrders = async () => {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/orders`
+          `/api/orders`
         );
         setOrders(
           res.data.filter((order) => order.customer === currentUser?.fullName)
@@ -31,7 +31,7 @@ const Order = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`);
+        const res = await axios.get(`/api/users`);
         setCurrentUser(
           res.data.filter((user) => user.email === session.user.email)[0]
         );

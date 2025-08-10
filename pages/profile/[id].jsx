@@ -89,7 +89,7 @@ const Profile = ({ user }) => {
 
 export async function getServerSideProps({ req, params }) {
   const user = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.id}`
+    `/api/users/${params.id}`
   );
 
   return {

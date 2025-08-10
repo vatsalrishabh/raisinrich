@@ -12,7 +12,7 @@ const Category = () => {
     const getCategories = async () => {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/categories`
+          `/api/categories`
         );
         setCategories(res?.data);
       } catch (error) {
@@ -25,7 +25,7 @@ const Category = () => {
   const handleCreate = async () => {
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/categories`,
+        `/api/categories`,
         {
           title: inputText,
         }
@@ -45,7 +45,7 @@ const Category = () => {
     try {
       if (confirm("Are you sure you want to delete this category?")) {
         await axios.delete(
-          `${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`
+          `/api/categories/${id}`
         );
         setCategories(categories.filter((cat) => cat._id !== id));
         toast.warning("Category Deleted", {

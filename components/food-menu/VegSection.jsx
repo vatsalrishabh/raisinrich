@@ -113,7 +113,7 @@ const VegSection = ({ heading, foodItems }) => {
   const [selectedDay, setSelectedDay] = useState(dayWiseFood[0].day);
 
   const currentDayFood = dayWiseFood.find(food => food.day === selectedDay);
-
+//j
   return (
     <div className='w-full max-w-6xl mx-auto py-8 px-2'>
       <h2 className='text-4xl font-extrabold mb-8 text-center tracking-tight text-gray-800'>{heading}</h2>

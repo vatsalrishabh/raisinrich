@@ -4,6 +4,7 @@ import VegSection from './VegSection';
 import Title from '../ui/Title';
 
 const KetoDiet = ({ plans }) => {
+   console.log(plans);
   // Filter only keto plans
   const ketoPlans = plans.filter(plan => plan.type.toLowerCase() === 'keto');
 
