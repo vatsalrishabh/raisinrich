@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Input from "../form/Input";
 import Title from "../ui/Title";
 import { toast } from "react-toastify";
-import axios from "axios";
+import api from "../../util/axios";
 
 const Category = () => {
   const [inputText, setInputText] = useState("");
@@ -11,9 +11,7 @@ const Category = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get(
-          `/api/categories`
-        );
+        const res = await api.get(`/api/categories`);
         setCategories(res?.data);
       } catch (error) {
         console.log(error);
@@ -24,12 +22,9 @@ const Category = () => {
 
   const handleCreate = async () => {
     try {
-      const res = await axios.post(
-        `/api/categories`,
-        {
-          title: inputText,
-        }
-      );
+      const res = await api.post(`/api/categories`, {
+        title: inputText,
+      });
       setCategories([...categories, res?.data]);
       setInputText("");
       toast.success("Category Created", {
@@ -44,9 +39,7 @@ const Category = () => {
     e.preventDefault();
     try {
       if (confirm("Are you sure you want to delete this category?")) {
-        await axios.delete(
-          `/api/categories/${id}`
-        );
+        await api.delete(`/api/categories/${id}`);
         setCategories(categories.filter((cat) => cat._id !== id));
         toast.warning("Category Deleted", {
           position: "bottom-left",

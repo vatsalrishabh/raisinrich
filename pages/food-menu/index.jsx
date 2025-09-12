@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../../util/axios';
 import { toast } from 'react-toastify';
 import React from 'react';
 import CircularTitleBar from '../../components/CircularTitleBar';
@@ -16,7 +16,7 @@ const Index = () => {
   useEffect(() => {
     const getDietPlans = async () => {
       try {
-        const res = await axios.get("/api/dietplans");
+        const res = await api.get("/api/dietplans");
         setDietPlans(res.data.dietPlans);
         console.log(res.data.dietPlans);
         if (res.data.dietPlans.length === 0) {

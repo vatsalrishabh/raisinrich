@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import Title from "../ui/Title";
 import { GiCancel } from "react-icons/gi";
-import axios from "axios";
+import api from "../../util/axios";
 import Input from "../form/Input";
 import { useRouter } from "next/router";
 import PacmanLoader from "react-spinners/PacmanLoader";
@@ -17,9 +17,7 @@ const Search = ({ setIsSearchModal }) => {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get(
-        `/api/products`
-      );
+      const res = await api.get(`/api/products`);
       setProduct(res.data);
       setFiltered(res.data);
     } catch (error) {

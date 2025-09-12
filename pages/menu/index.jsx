@@ -1,6 +1,6 @@
 import React from "react";
 import MenuWrapper from "../../components/product/MenuWrapper";
-import axios from "axios";
+import api from "../../util/axios";
 
 const Index = ({ categoryList, productList }) => {
   return (
@@ -11,18 +11,24 @@ const Index = ({ categoryList, productList }) => {
 };
 
 export const getServerSideProps = async () => {
-  const category = await axios.get(
-    `/api/categories`
-  );
-  const product = await axios.get(
-    `/api/products`
-  );
-  return {
-    props: {
-      categoryList: category.data ? category.data : [],
-      productList: product.data ? product.data : [],
-    },
-  };
+  try {
+    const category = await api.get(`/api/categories`);
+    const product = await api.get(`/api/products`);
+    return {
+      props: {
+        categoryList: category.data ? category.data : [],
+        productList: product.data ? product.data : [],
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        categoryList: [],
+        productList: [],
+      },
+    };
+  }
 };
 
 export default Index;

@@ -3,7 +3,7 @@ import Input from "../components/form/Input";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import Home from "./home";
-import axios from "axios";
+import api from "../util/axios";
 
 
 export default function Index({ categoryList, productList }) {
@@ -25,14 +25,22 @@ export default function Index({ categoryList, productList }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await axios.get(`/api/categories`);
-  const product = await axios.get(
-    `/api/products`
-  );
-  return {
-    props: {
-      categoryList: res.data ? res.data : [],
-      productList: product.data ? product.data : [],
-    },
-  };
+  try {
+    const res = await api.get(`/api/categories`);
+    const product = await api.get(`/api/products`);
+    return {
+      props: {
+        categoryList: res.data ? res.data : [],
+        productList: product.data ? product.data : [],
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        categoryList: [],
+        productList: [],
+      },
+    };
+  }
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Title from "../ui/Title";
 import Image from "next/image";
-import axios from "axios";
+import api from "../../util/axios";
 import { toast } from "react-toastify";
 import AddDietPlanForm from "./AddDietPlanForm";
 
@@ -18,7 +18,7 @@ const Products = () => {
 
   const getDietPlans = async () => {
     try {
-      const res = await axios.get("/api/dietplans");
+      const res = await api.get("/api/dietplans");
       setDietPlans(res.data.dietPlans);
     } catch (error) {
       console.error(error);

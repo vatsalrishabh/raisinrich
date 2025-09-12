@@ -1,5 +1,5 @@
-import axios from "axios";
 import Image from "next/image";
+import api from "../../util/axios";
 
 const Order = ({ order }) => {
   const status = order?.status;
@@ -95,14 +95,21 @@ const Order = ({ order }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(
-    `/api/orders/${params.id}`
-  );
-  return {
-    props: {
-      order: res.data ? res.data : null,
-    },
-  };
+  try {
+    const res = await api.get(`/api/orders/${params.id}`);
+    return {
+      props: {
+        order: res.data ? res.data : null,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching order data:", error);
+    return {
+      props: {
+        order: null,
+      },
+    };
+  }
 };
 
 export default Order;
