@@ -32,7 +32,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       type:"balanced",
       breakfast: {
         name: "Chicken Omelette",
-        image: "https://example.com/chicken-omelette.jpg",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop",
         description: "A delicious omelette made with eggs and chicken, served with a side of toast.",
         protein: 25,
         carbs: 10,
@@ -41,7 +41,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       lunch: {
         name: "Grilled Chicken Salad",
-        image: "https://example.com/grilled-chicken-salad.jpg",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop",
         description: "A fresh salad topped with grilled chicken, mixed greens, and a light vinaigrette.",
         protein: 40,
         carbs: 15,
@@ -50,7 +50,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       eveningSnack: {
         name: "Chicken Wrap",
-        image: "https://example.com/chicken-wrap.jpg",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop",
         description: "A wrap filled with grilled chicken, lettuce, and a tangy sauce.",
         protein: 30,
         carbs: 20,
@@ -59,7 +59,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       dinner: {
         name: "Spicy Chicken Stir-Fry",
-        image: "https://example.com/spicy-chicken-stir-fry.jpg",
+        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop",
         description: "A spicy stir-fry made with chicken, vegetables, and a savory sauce.",
         protein: 35,
         carbs: 25,
@@ -73,7 +73,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       category: "Non-Veg",
       breakfast: {
         name: "Egg Bhurji",
-        image: "https://example.com/egg-bhurji.jpg",
+        image: "https://images.unsplash.com/photo-1582169296194-e4d644b24c58?w=400&h=300&fit=crop",
         description: "Spiced scrambled eggs with onions and tomatoes.",
         protein: 20,
         carbs: 8,
@@ -82,7 +82,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       lunch: {
         name: "Chicken Biryani",
-        image: "https://example.com/chicken-biryani.jpg",
+        image: "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=400&h=300&fit=crop",
         description: "Aromatic rice with tender chicken pieces and spices.",
         protein: 35,
         carbs: 60,
@@ -91,7 +91,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       eveningSnack: {
         name: "Chicken Soup",
-        image: "https://example.com/chicken-soup.jpg",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=300&fit=crop",
         description: "Warm chicken soup with veggies.",
         protein: 18,
         carbs: 10,
@@ -100,7 +100,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       dinner: {
         name: "Fish Curry",
-        image: "https://example.com/fish-curry.jpg",
+        image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop",
         description: "Spicy fish curry served with steamed rice.",
         protein: 28,
         carbs: 30,

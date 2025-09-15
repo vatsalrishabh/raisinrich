@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaUserAlt, FaShoppingCart, FaSearch } from "react-icons/fa";
 import Logo from "../ui/Logo";
 import Search from "../ui/Search";
@@ -10,9 +10,14 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const [isSearchModal, setIsSearchModal] = useState(false);
   const [isMenuModal, setIsMenuModal] = useState(false);
+  const [currentPath, setCurrentPath] = useState("");
   const cart = useSelector((state) => state.cart);
 
   const router = useRouter();
+
+  useEffect(() => {
+    setCurrentPath(router.asPath);
+  }, [router.asPath]);
 
   const navItems = [
   // { name: "Home", path: "/" },
@@ -46,7 +51,7 @@ const Header = () => {
               <li
                 key={path}
                 className={`px-2 md:px-3 py-2 uppercase hover:text-primary cursor-pointer whitespace-nowrap ${
-                  router.asPath === path ? "text-primary" : ""
+                  currentPath === path ? "text-primary" : ""
                 }`}
                 onClick={() => setIsMenuModal(false)}
               >
