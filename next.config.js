@@ -3,8 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['res.cloudinary.com', 'https://raisinrich.co.in/', 'raisinrich.co.in', 'example.com', 'images.unsplash.com'],
+    domains: ['images.unsplash.com', 'res.cloudinary.com', 'lh3.googleusercontent.com'],
+    loader: 'default',
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

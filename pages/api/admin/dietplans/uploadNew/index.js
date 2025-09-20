@@ -4,8 +4,8 @@ import formidable from "formidable";
 import fs from "fs";
 import path from "path";
 
-// Ensure daywisephoto directory exists
-const uploadDir = path.join(process.cwd(), "public", "daywisephoto");
+// Ensure images directory exists
+const uploadDir = path.join(process.cwd(), "public", "images");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 export const config = {
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
       const file = files[`${mealKey}[image]`];
       if (!file) return "";
       const f = Array.isArray(file) ? file[0] : file;
-      return f ? `/daywisephoto/${path.basename(f.filepath || f.path)}` : "";
+      return f ? `/images/${path.basename(f.filepath || f.path)}` : "";
     };
 
     // Helper for top-level fields

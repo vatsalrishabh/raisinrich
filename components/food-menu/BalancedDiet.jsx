@@ -4,7 +4,6 @@ import VegSection from './VegSection';
 import Title from '../ui/Title';
 
 const BalancedDiet = ({ plans }) => {
-  console.log(plans);
   // Filter plans based on Veg or Non-Veg category
   const vegFoodItems = plans.filter(plan => plan.category === 'Veg');
   const nonVegFoodItems = plans.filter(plan => plan.category === 'Non-Veg');

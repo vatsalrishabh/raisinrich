@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaSun, FaCloud, FaCloudRain, FaRegCalendarAlt } from 'react-icons/fa';
 import { GiChickenOven, GiFishCooked, GiEggClutch, GiWrappedSweet } from 'react-icons/gi';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+// import Image from 'next/image'; // Removed to use regular img tags
 
 // Icon map for days (customize as you like)
 const dayIcons = [
@@ -32,7 +32,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       type:"balanced",
       breakfast: {
         name: "Chicken Omelette",
-        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8",
         description: "A delicious omelette made with eggs and chicken, served with a side of toast.",
         protein: 25,
         carbs: 10,
@@ -41,7 +41,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       lunch: {
         name: "Grilled Chicken Salad",
-        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd",
         description: "A fresh salad topped with grilled chicken, mixed greens, and a light vinaigrette.",
         protein: 40,
         carbs: 15,
@@ -50,7 +50,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       eveningSnack: {
         name: "Chicken Wrap",
-        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f",
         description: "A wrap filled with grilled chicken, lettuce, and a tangy sauce.",
         protein: 30,
         carbs: 20,
@@ -59,7 +59,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       dinner: {
         name: "Spicy Chicken Stir-Fry",
-        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b",
         description: "A spicy stir-fry made with chicken, vegetables, and a savory sauce.",
         protein: 35,
         carbs: 25,
@@ -73,7 +73,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       category: "Non-Veg",
       breakfast: {
         name: "Egg Bhurji",
-        image: "https://images.unsplash.com/photo-1582169296194-e4d644b24c58?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1582169296194-e4d644b24c58",
         description: "Spiced scrambled eggs with onions and tomatoes.",
         protein: 20,
         carbs: 8,
@@ -82,7 +82,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       lunch: {
         name: "Chicken Biryani",
-        image: "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1563379091339-03246963d96c",
         description: "Aromatic rice with tender chicken pieces and spices.",
         protein: 35,
         carbs: 60,
@@ -91,7 +91,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       eveningSnack: {
         name: "Chicken Soup",
-        image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554",
         description: "Warm chicken soup with veggies.",
         protein: 18,
         carbs: 10,
@@ -100,7 +100,7 @@ const NonVegSection = ({ heading, foodItems }) => {
       },
       dinner: {
         name: "Fish Curry",
-        image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1585032226651-759b368d7246",
         description: "Spicy fish curry served with steamed rice.",
         protein: 28,
         carbs: 30,
@@ -159,12 +159,15 @@ const NonVegSection = ({ heading, foodItems }) => {
                     {mealIcons[meal]}
                     <h3 className='text-2xl font-bold'>{currentDayFood[meal].name}</h3>
                   </div>
-                  <Image
-                    width={400}
-                    height={300}
-                    src={currentDayFood[meal].image}
-                    alt={currentDayFood[meal].name}
+                  <img
+                    src={currentDayFood[meal]?.image || '/images/balanced-diet.jpg'}
+                    alt={currentDayFood[meal]?.name || 'Meal image'}
                     className='w-full h-44 object-cover rounded-xl mb-4 border'
+                    loading="lazy"
+                    onError={(e) => {
+                      console.log('Image failed to load:', currentDayFood[meal]?.image);
+                      e.target.src = '/images/balanced-diet.jpg';
+                    }}
                   />
                   <p className='text-gray-700 mb-3'>{currentDayFood[meal].description}</p>
                   <div className='flex flex-wrap justify-between text-sm text-gray-600 gap-2 mt-auto'>

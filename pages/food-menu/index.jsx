@@ -17,24 +17,30 @@ const Index = () => {
     const getDietPlans = async () => {
       try {
         const res = await api.get("/api/dietplans");
-        setDietPlans(res.data.dietPlans);
-        console.log(res.data.dietPlans);
-        if (res.data.dietPlans.length === 0) {
+        const plans = res.data || [];
+        setDietPlans(plans);
+        console.log('Diet plans received:', plans);
+        if (plans.length > 0) {
+          console.log('First diet plan structure:', JSON.stringify(plans[0], null, 2));
+          console.log('First diet plan breakfast image:', plans[0].breakfast?.image);
+        }
+        if (plans.length === 0) {
           toast.info("No diet plans available at the moment.");
         }
       } catch (error) {
         console.error(error);
         toast.error("Failed to fetch diet plans");
+        setDietPlans([]); // Set empty array on error
       }
     };
 
     getDietPlans();
   }, []);
 
-  // 🔍 Filter by type
-  const balancedPlans = dietPlans.filter(plan => plan.type === "balanced");
-  const ketoPlans = dietPlans.filter(plan => plan.type === "keto");
-  const detoxPlans = dietPlans.filter(plan => plan.type === "detox");
+  // 🔍 Filter by type with proper validation
+  const balancedPlans = Array.isArray(dietPlans) ? dietPlans.filter(plan => plan.type === "balanced") : [];
+  const ketoPlans = Array.isArray(dietPlans) ? dietPlans.filter(plan => plan.type === "keto") : [];
+  const detoxPlans = Array.isArray(dietPlans) ? dietPlans.filter(plan => plan.type === "detox") : [];
 
   return (
     <div>
