@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { FaSun, FaCloud, FaCloudRain, FaRegCalendarAlt } from 'react-icons/fa';
 import { GiChickenOven, GiFishCooked, GiEggClutch, GiWrappedSweet } from 'react-icons/gi';
 import { motion, AnimatePresence } from 'framer-motion';
-// import Image from 'next/image'; // Removed to use regular img tags
+import Image from 'next/image';
 
 // Icon map for days (customize as you like)
 const dayIcons = [
@@ -110,6 +110,7 @@ const VegSection = ({ heading, foodItems }) => {
       }
     }
   ];
+  }, [foodItems]);
 
   const [selectedDay, setSelectedDay] = useState(dayWiseFood[0].day);
 
@@ -160,15 +161,12 @@ const VegSection = ({ heading, foodItems }) => {
                     {mealIcons[meal]}
                     <h3 className='text-2xl font-bold'>{currentDayFood[meal].name || 'Meal'}</h3>
                   </div>
-                  <img
+                  <Image
                     src={currentDayFood[meal]?.image || '/images/balanced-diet.jpg'}
                     alt={currentDayFood[meal]?.name || 'Meal image'}
+                    width={400}
+                    height={176}
                     className='w-full h-44 object-cover rounded-xl mb-4 border'
-                    loading="lazy"
-                    onError={(e) => {
-                      console.log('Image failed to load:', currentDayFood[meal]?.image);
-                      e.target.src = '/images/balanced-diet.jpg';
-                    }}
                   />
                   <p className='text-gray-700 mb-3'>{currentDayFood[meal].description || 'No description available'}</p>
                   <div className='flex flex-wrap justify-between text-sm text-gray-600 gap-2 mt-auto'>
