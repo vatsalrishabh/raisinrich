@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const mealSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  price:String, // I've added the pice here for each product 
   image: String,
   description: String,
   protein: Number,

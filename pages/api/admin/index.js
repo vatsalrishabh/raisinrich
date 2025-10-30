@@ -56,7 +56,7 @@ console.log("Test User:", test);
       { expiresIn: "1h" }
     );
 
-    // Set cookie
+    // Set cookie kk
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("token", token, {

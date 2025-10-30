@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+// Use local MongoDB for development if Atlas connection fails
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/raisinrich";
 
+// Don't throw error if MONGODB_URI is not defined, use local fallback instead
 if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
-  );
+  console.warn("MONGODB_URI not defined, using local MongoDB fallback");
 }
 
 /**
@@ -29,10 +29,24 @@ async function dbConnect() {
       .connect(MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+        socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
       })
       .then((mongoose) => {
-         console.log("✅ Connected to MongoDB database:", mongoose.connection.name);
+        console.log("✅ Connected to MongoDB database:", mongoose.connection.name);
         return mongoose;
+      })
+      .catch(err => {
+        console.error("❌ MongoDB connection error:", err.message);
+        // Try connecting to local MongoDB if remote connection fails
+        if (MONGODB_URI !== "mongodb://localhost:27017/raisinrich") {
+          console.log("Attempting to connect to local MongoDB...");
+          return mongoose.connect("mongodb://localhost:27017/raisinrich", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          });
+        }
+        throw err;
       });
   }
   cached.conn = await cached.promise;
