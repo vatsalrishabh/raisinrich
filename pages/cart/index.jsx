@@ -1,4 +1,5 @@
 import Title from "../../components/ui/Title";
+import { calculateSubscriptionTotal } from "../../util/pricing";
 import { useSelector, useDispatch } from "react-redux";
 import {
   quantityDecrease,
@@ -31,22 +32,11 @@ const Cart = ({ userList }) => {
   const [region, setRegion] = useState("");
   const [showAddress, setShowAddress] = useState(false);
 
-  const planPrices = {
-    "7 days": 1200,
-    "15 days": 2200,
-    "30 days": 4000,
-    "60 days": 7000,
-    "90 days": 9000,
-  };
-  const subscriptionTotal =
-    subscription && subscription.days
-      ? planPrices[subscription.days] ||
-        (subscription.goal === "Detox/Cut Diets"
-          ? 2500
-          : subscription.goal === "Gain Muscle"
-          ? 12000
-          : 0)
-      : 0;
+  const subscriptionTotal = calculateSubscriptionTotal({
+    dietType: subscription?.dietType,
+    mealTimes: subscription?.mealTimes,
+    days: subscription?.days,
+  });
 
   const cartSubtotal = cart.total + subscriptionTotal;
   const sgst = +(cartSubtotal * 0.025).toFixed(2);

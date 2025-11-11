@@ -22,6 +22,7 @@ import {
 import { GiBodyHeight, GiWeightScale, GiMeal, GiMuscleUp, GiCutDiamond } from "react-icons/gi";
 import { updateForm, resetForm } from "../../redux/subscription/subscriptionSlice"; // See slice code below
 import { useRouter } from "next/router";
+import { calculateSubscriptionTotal } from "../../util/pricing";
 
 const mealTimeOptions = [
   { label: "Morning", value: "Morning" },
@@ -207,13 +208,6 @@ const steps = [
   },
 ];
 
-const planPrices = {
-  "7 days": 1200,
-  "15 days": 2200,
-  "30 days": 4000,
-  "60 days": 7000,
-  "90 days": 9000,
-};
 
 const SubscriptionForm = () => {
   const dispatch = useDispatch();
@@ -223,10 +217,12 @@ const SubscriptionForm = () => {
 
   const progress = Math.round((step / (steps.length - 1)) * 100);
 
-  // Calculate total price based on selected days
-  const total =
-    planPrices[form.days] ||
-    (form.goal === "Detox/Cut Diets" ? 2500 : form.goal === "Gain Muscle" ? 12000 : 0);
+  // Dynamic total based on diet type, selected meal times, and number of days
+  const total = calculateSubscriptionTotal({
+    dietType: form.dietType,
+    mealTimes: form.mealTimes,
+    days: form.days,
+  });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
